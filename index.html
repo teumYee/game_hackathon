@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KING 해커톤 · 배포 확인</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: #eef1eb;
+        color: #17241c;
+        font-family: system-ui, "Malgun Gothic", sans-serif;
+      }
+      main {
+        width: min(100%, 720px);
+        padding: clamp(24px, 5vw, 48px);
+        border: 1px solid #00462a;
+        border-radius: 8px;
+        background: white;
+      }
+      .label {
+        margin: 0 0 24px;
+        color: #00462a;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      h1 {
+        margin: 0 0 16px;
+        font-size: clamp(28px, 6vw, 42px);
+      }
+      p {
+        line-height: 1.7;
+      }
+      #stage {
+        display: grid;
+        place-items: center;
+        min-height: 180px;
+        margin: 28px 0 20px;
+        padding: 24px;
+        background: #f3f5f1;
+        border: 1px solid #d8ded7;
+        text-align: center;
+      }
+      #message {
+        margin: 0;
+      }
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      button {
+        padding: 12px 20px;
+        border: 1px solid #00462a;
+        border-radius: 4px;
+        background: #00462a;
+        color: white;
+        font: inherit;
+        cursor: pointer;
+      }
+      #restart {
+        background: white;
+        color: #00462a;
+      }
+      button:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      button:focus-visible {
+        outline: 3px solid #69a58c;
+        outline-offset: 4px;
+      }
+      .guide {
+        margin-top: 28px;
+        padding: 24px;
+        border: 1px solid #d8ded7;
+        background: #f8faf6;
+      }
+      .guide h2 {
+        margin: 0 0 12px;
+        font-size: 22px;
+      }
+      .guide li {
+        margin: 10px 0;
+        line-height: 1.7;
+      }
+      .sheet-link {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 12px 18px;
+        background: #00462a;
+        color: white;
+        border-radius: 4px;
+        text-decoration: none;
+      }
+      .sheet-link:focus-visible {
+        outline: 3px solid #69a58c;
+        outline-offset: 4px;
+      }
+      .note {
+        margin-top: 28px;
+        padding-top: 20px;
+        border-top: 1px solid #d8ded7;
+        color: #68746b;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="label">KING · 바이브코딩 해커톤</p>
+      <!-- 사전 수정 연습: 아래 제목을 원하는 문구로 바꿔 보세요. -->
+      <h1>해커톤 준비 완료</h1>
+      <p>
+        이 화면이 GitHub Pages 공개 주소에서 보이면 배포에 성공한 것입니다.<br />시작
+        버튼을 눌러 기본 동작도 확인해 주세요.
+      </p>
+      <section id="stage" aria-label="실행 확인 화면" aria-live="polite">
+        <p id="message">시작 버튼을 눌러 주세요.</p>
+      </section>
+      <div class="buttons">
+        <button id="start" type="button">시작</button>
+        <button id="restart" type="button" disabled>다시 시작</button>
+      </div>
+      <section class="guide" aria-labelledby="guide-title">
+        <h2 id="guide-title">참가자 정보 사전 입력</h2>
+        <p>
+          정기 모임 전에 GitHub와 Skeam 계정을 만들고, 아래 스프레드시트에 본인
+          정보를 미리 기재해 주세요.
+        </p>
+        <ol>
+          <li>
+            <strong>GitHub 계정:</strong> 계정을 생성하고 이메일 인증을
+            완료합니다. 공개 저장소를 만들고 이 파일을 GitHub Pages에 배포해
+            봅니다.
+          </li>
+          <li>
+            <strong>Skeam 계정:</strong> 계정을 생성하고 행사에 사용할 기기에서
+            로그인을 확인합니다.
+          </li>
+          <li>
+            <strong>스프레드시트:</strong> 빈 행 하나에 이름, Skeam 닉네임, 참여
+            여부, 사용할 AI·제작 도구를 입력합니다. 이미 본인 행이 있다면 해당
+            행을 수정합니다.
+          </li>
+          <li>
+            <strong>행사 후 입력:</strong> 작품명과 Skeam 링크를 입력합니다.
+            아직 만들지 않은 작품 정보와 링크는 비워 두어도 됩니다.
+          </li>
+        </ol>
+        <a
+          class="sheet-link"
+          href="https://docs.google.com/spreadsheets/d/1eLqrOtpMhR3VfCOIV-9_RNtlB1wUtHm_m6aK4ziDUH8/edit?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          >참가자 정보 입력 시트 열기 ↗</a
+        >
+        <p style="font-size: 14px; color: #68746b">
+          다른 참가자의 행은 수정하지 마세요. 비밀번호·API 키는 기재하지
+          않습니다. 사전 준비·출석·제출 상태·실행 확인은 운영진이 관리합니다.
+        </p>
+      </section>
+      <p class="note">
+        이 파일은 배포 연습용 기본 틀입니다. 실제 게임 규칙과 조작은 당일
+        추가하세요.<br />사전 연습: 제목을 수정해 다시 올린 뒤 공개 페이지에도
+        반영되는지 확인합니다.
+      </p>
+    </main>
+    <script>
+      // 외부 라이브러리 없이 이 파일 하나로 실행됩니다.
+      const message = document.getElementById("message");
+      const start = document.getElementById("start");
+      const restart = document.getElementById("restart");
+      start.addEventListener("click", () => {
+        message.textContent =
+          "시작 버튼이 정상적으로 작동합니다. 다시 시작 버튼도 확인해 주세요.";
+        start.disabled = true;
+        restart.disabled = false;
+        restart.focus();
+      });
+      restart.addEventListener("click", () => {
+        message.textContent = "시작 버튼을 눌러 주세요.";
+        start.disabled = false;
+        restart.disabled = true;
+        start.focus();
+      });
+    </script>
+  </body>
+</html>

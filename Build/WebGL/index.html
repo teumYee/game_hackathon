@@ -87,7 +87,7 @@
     </footer>
   </main>
 
-  <script src="Build/WebGL/Build/WebGL.loader.js"></script>
+  <script src="Build/WebGL.loader.js"></script>
   <script>
     const canvas = document.getElementById("unity-canvas");
     const loading = document.getElementById("loading");
@@ -96,10 +96,10 @@
     let unityInstance = null;
 
     const config = {
-      dataUrl: "Build/WebGL/Build/WebGL.data.br",
-      frameworkUrl: "Build/WebGL/Build/WebGL.framework.js.br",
-      codeUrl: "Build/WebGL/Build/WebGL.wasm.br",
-      streamingAssetsUrl: "Build/WebGL/StreamingAssets",
+      dataUrl: "Build/WebGL.data.br",
+      frameworkUrl: "Build/WebGL.framework.js.br",
+      codeUrl: "Build/WebGL.wasm.br",
+      streamingAssetsUrl: "StreamingAssets",
       companyName: "DefaultCompany",
       productName: "민첩한 하루 되세요",
       productVersion: "1.0",
@@ -107,22 +107,17 @@
       devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2)
     };
 
-    if (typeof createUnityInstance !== "function") {
+    createUnityInstance(canvas, config, (value) => {
+      progress.style.width = Math.round(value * 100) + "%";
+    }).then((instance) => {
+      unityInstance = instance;
+      loading.hidden = true;
+      canvas.focus();
+    }).catch((error) => {
       loadingNote.className = "error";
-      loadingNote.textContent = "Unity WebGL 로더를 찾지 못했습니다. Build/WebGL/Build 폴더를 확인해주세요.";
-    } else {
-      createUnityInstance(canvas, config, (value) => {
-        progress.style.width = Math.round(value * 100) + "%";
-      }).then((instance) => {
-        unityInstance = instance;
-        loading.hidden = true;
-        canvas.focus();
-      }).catch((error) => {
-        loadingNote.className = "error";
-        loadingNote.textContent = "게임을 불러오지 못했습니다. WebGL 빌드 파일을 확인해주세요.";
-        console.error(error);
-      });
-    }
+      loadingNote.textContent = "게임을 불러오지 못했습니다. WebGL 빌드 파일을 확인해주세요.";
+      console.error(error);
+    });
 
     document.getElementById("fullscreen").addEventListener("click", () => {
       if (unityInstance) unityInstance.SetFullscreen(1);

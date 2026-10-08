@@ -9,8 +9,9 @@ public static class WebGLBuildAutomation
 {
     public static void Build()
     {
-        PlayerSettings.productName = "민첩한 하루 되세요";
+        PlayerSettings.productName = "오늘도 갓생 살아볼까요?";
         PlayerSettings.WebGL.template = "PROJECT:AgileDay";
+        PlayerSettings.WebGL.decompressionFallback = true;
         PlayerSettings.SetIl2CppCodeGeneration(NamedBuildTarget.WebGL, Il2CppCodeGeneration.OptimizeSize);
 
         var scenes = EditorBuildSettings.scenes
